@@ -66,11 +66,11 @@ public class TransactionResultServiceImpl implements TransactionResultService {
     @Override
     public List<TransactionResultDto> getAllByPayer(String payerName) {
         if(payerName != null && !payerName.isBlank()){
-            Call<TransactionResultWrapper> call = resultApi.getAllByPayer(payerName);
+            Call<List<TransactionResultDto>> call = resultApi.getAllByPayer(payerName);
             try {
-                Response<TransactionResultWrapper> response = call.execute();
+                Response<List<TransactionResultDto>> response = call.execute();
                 if(response.isSuccessful()){
-                    return response.body().getTransactionResultDtos();
+                    return response.body();
                 }else {
                     return null;
                 }

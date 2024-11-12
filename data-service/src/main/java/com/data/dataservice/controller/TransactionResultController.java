@@ -3,7 +3,6 @@ package com.data.dataservice.controller;
 import com.data.dataservice.dto.TransactionResultDto;
 import com.data.dataservice.dto.TransactionResultListDto;
 import com.data.dataservice.dto.TransactionResultResponseDto;
-import com.data.dataservice.dto.TransactionResultWrapper;
 import com.data.dataservice.service.TransactionResultService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +52,7 @@ public class TransactionResultController {
     }
 
     @GetMapping("/payer/{name}")
-    public ResponseEntity<TransactionResultWrapper> getAllByPayerName(@PathVariable String name){
+    public ResponseEntity<List<TransactionResultDto>> getAllByPayerName(@PathVariable String name){
         return  ResponseEntity.ok(transactionResultService.getAllByPayerName(name));
     }
 

@@ -40,9 +40,9 @@ public interface InstructionApi {
     Call<List<InstructionResponseDto>> getAllByPaymentTime();
 
     @GET("instructions/payer/{name}")
-    Call<InstructionWrapper> getInstructionByPayer(@Path("name") String name);
+    Call<List<InstructionDto>> getInstructionByPayer(@Path("name") String name);
 
     @GET("instructions/receiver/{name}")
-    Call<InstructionWrapper> getInstructionByReceiver(@Path("name") String name);
+    Call<List<InstructionDto>> getInstructionByReceiver(@Path("name") String name);
 
 }

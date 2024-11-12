@@ -3,7 +3,6 @@ package com.data.dataservice.service;
 import com.data.dataservice.dto.TransactionResultDto;
 import com.data.dataservice.dto.TransactionResultListDto;
 import com.data.dataservice.dto.TransactionResultResponseDto;
-import com.data.dataservice.dto.TransactionResultWrapper;
 
 import java.util.List;
 
@@ -21,5 +20,5 @@ public interface TransactionResultService {
 
     void createAll(TransactionResultListDto transactionResultListDto);
 
-    TransactionResultWrapper getAllByPayerName(String name);
+    List<TransactionResultDto> getAllByPayerName(String name);
 }

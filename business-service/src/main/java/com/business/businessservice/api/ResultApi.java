@@ -24,5 +24,5 @@ public interface ResultApi {
     Call<Void> delete(@Path("id") Long id);
 
     @GET("payer/{name}")
-    Call<TransactionResultWrapper> getAllByPayer(@Path("name") String payerName);
+    Call<List<TransactionResultDto>> getAllByPayer(@Path("name") String payerName);
 }

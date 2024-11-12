@@ -2,8 +2,6 @@ package com.data.dataservice.service.impl;
 
 import com.data.dataservice.dto.InstructionDto;
 import com.data.dataservice.dto.InstructionResponseDto;
-import com.data.dataservice.dto.InstructionResponseWrapper;
-import com.data.dataservice.dto.InstructionWrapper;
 import com.data.dataservice.exceptions.InstructionNotFoundException;
 import com.data.dataservice.object.entity.Instruction;
 import com.data.dataservice.repository.InstructionRepository;
@@ -64,36 +62,36 @@ public class InstructionServiceImpl implements InstructionService {
     }
 
     @Override
-    public InstructionResponseWrapper getAllByDateTime() {
+    public List<InstructionResponseDto> getAllByDateTime() {
         List<Instruction> instructions = instructionRepository.getAllByPaymentTime(LocalDateTime.now());
         List<InstructionResponseDto> responseDtos = new LinkedList<>();
 
         for(Instruction instruction: instructions){
             responseDtos.add(modelMapper.map(instruction, InstructionResponseDto.class));
         }
-        return new InstructionResponseWrapper(responseDtos);
+        return responseDtos;
     }
 
     @Override
-    public InstructionWrapper geAllByPayer(String name) {
+    public List<InstructionDto> geAllByPayer(String name) {
         List<Instruction> instructions = instructionRepository.findAllByFullName(name);
         List<InstructionDto> responseDtos = new LinkedList<>();
 
         for(Instruction instruction: instructions){
             responseDtos.add(modelMapper.map(instruction, InstructionDto.class));
         }
-        return new InstructionWrapper(responseDtos);
+        return responseDtos;
     }
 
     @Override
-    public InstructionWrapper getInstructionByReceiver(String name) {
+    public List<InstructionDto> getInstructionByReceiver(String name) {
         List<Instruction> instructions = instructionRepository.findAllByReceiverFullName(name);
         List<InstructionDto> responseDtos = new LinkedList<>();
 
         for(Instruction instruction: instructions){
             responseDtos.add(modelMapper.map(instruction, InstructionDto.class));
         }
-        return new InstructionWrapper(responseDtos);
+        return responseDtos;
     }
 
 }

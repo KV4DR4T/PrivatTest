@@ -2,8 +2,6 @@ package com.data.dataservice.controller;
 
 import com.data.dataservice.dto.InstructionDto;
 import com.data.dataservice.dto.InstructionResponseDto;
-import com.data.dataservice.dto.InstructionResponseWrapper;
-import com.data.dataservice.dto.InstructionWrapper;
 import com.data.dataservice.service.InstructionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -49,12 +47,12 @@ public class InstructionsController {
     }
 
     @GetMapping("/payer/{name}")
-    public ResponseEntity<InstructionWrapper> getInstructionByPayer(@PathVariable String name){
+    public ResponseEntity<List<InstructionDto>> getInstructionByPayer(@PathVariable String name){
         return ResponseEntity.ok(instructionService.geAllByPayer(name));
     }
 
     @GetMapping("/receiver/{name}")
-    public ResponseEntity<InstructionWrapper> getInstructionByReceiver(@PathVariable String name){
+    public ResponseEntity<List<InstructionDto>> getInstructionByReceiver(@PathVariable String name){
         return ResponseEntity.ok(instructionService.getInstructionByReceiver(name));
     }
 
@@ -69,7 +67,7 @@ public class InstructionsController {
     }
 
     @GetMapping("/time")
-    public ResponseEntity<InstructionResponseWrapper> getAllByPaymentTime(){
+    public ResponseEntity<List<InstructionResponseDto>> getAllByPaymentTime(){
         return ResponseEntity.ok(instructionService.getAllByDateTime());
     }
 }

@@ -3,7 +3,6 @@ package com.business.businessservice.service.impl;
 import com.business.businessservice.api.InstructionApi;
 import com.business.businessservice.dto.InstructionDto;
 import com.business.businessservice.dto.InstructionResponseDto;
-import com.business.businessservice.dto.InstructionWrapper;
 import com.business.businessservice.exceptions.ValidationException;
 import com.business.businessservice.service.InstructionService;
 import com.business.businessservice.service.TransactionResultService;
@@ -121,10 +120,10 @@ public class InstructionServiceImpl implements InstructionService {
     @Override
     public List<InstructionDto> geAllByPayer(String name) {
         try {
-            Call<InstructionWrapper> call = instructionApi.getInstructionByPayer(name);
-            Response<InstructionWrapper> response = call.execute();
+            Call<List<InstructionDto>> call = instructionApi.getInstructionByPayer(name);
+            Response<List<InstructionDto>> response = call.execute();
             if(response.isSuccessful()){
-                return response.body().getInstructionDtos();
+                return response.body();
             }else {
                 return null;
             }
@@ -136,10 +135,10 @@ public class InstructionServiceImpl implements InstructionService {
     @Override
     public List<InstructionDto> getInstructionByReceiver(String name) {
         try {
-            Call<InstructionWrapper> call = instructionApi.getInstructionByReceiver(name);
-            Response<InstructionWrapper> response = call.execute();
+            Call<List<InstructionDto>> call = instructionApi.getInstructionByReceiver(name);
+            Response<List<InstructionDto>> response = call.execute();
             if(response.isSuccessful()){
-                return response.body().getInstructionDtos();
+                return response.body();
             }else {
                 return null;
             }

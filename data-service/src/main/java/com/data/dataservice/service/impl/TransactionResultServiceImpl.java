@@ -3,7 +3,6 @@ package com.data.dataservice.service.impl;
 import com.data.dataservice.dto.TransactionResultDto;
 import com.data.dataservice.dto.TransactionResultListDto;
 import com.data.dataservice.dto.TransactionResultResponseDto;
-import com.data.dataservice.dto.TransactionResultWrapper;
 import com.data.dataservice.exceptions.ResultNotFoundException;
 import com.data.dataservice.object.entity.Instruction;
 import com.data.dataservice.object.entity.TransactionResult;
@@ -70,7 +69,7 @@ public class TransactionResultServiceImpl implements TransactionResultService {
     }
 
     @Override
-    public TransactionResultWrapper getAllByPayerName(String name) {
+    public List<TransactionResultDto> getAllByPayerName(String name) {
         List<TransactionResult> transactionResults = transactionResultRepository.findAllByPayerName(name);
         List<TransactionResultDto> resultDtos = new LinkedList<>();
 
@@ -78,7 +77,7 @@ public class TransactionResultServiceImpl implements TransactionResultService {
             resultDtos.add(modelMapper.map(transactionResult, TransactionResultDto.class));
         }
 
-        return new TransactionResultWrapper(resultDtos);
+        return resultDtos;
     }
 
     @Override
